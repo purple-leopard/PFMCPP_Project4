@@ -92,6 +92,22 @@ good to go!
  */
 
 #include <iostream>
+
+struct FloatType
+{
+
+};
+
+struct DoubleType
+{
+
+};
+
+struct IntType
+{
+
+};
+
 int main() 
 {
     FloatType ft;
