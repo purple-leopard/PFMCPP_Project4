@@ -186,17 +186,42 @@ good to go!
 
 struct FloatType
 {
-    float add(float lhs, float rhs) { return lhs + rhs; }
-    float subtract(float lhs, float rhs) { return lhs - rhs; }
-    float multiply(float lhs, float rhs) { return lhs * rhs; }
-    float divide(float lhs, float rhs)
+    FloatType(float v) : value(new float(v)) {}
+
+    ~FloatType()
     {
-        if (rhs == 0.0f)
+        delete value;
+    }
+
+    FloatType& add(float x)
+    {
+        *value += x;
+        return *this;
+    }
+
+    FloatType& subtract(float x)
+    {
+        *value -= x;
+        return *this;
+    }
+    
+    FloatType& multiply(float x)
+    {
+        *value *= x;
+        return *this;
+
+    }
+    FloatType& divide(float x)
+    {
+        if (x == 0.0f)
         {
             std::cout << "\nwarning, floating point division by zero returns 'inf' !\n";
         }
-        return lhs / rhs;
+        *value /= x;
+        return *this;
     }
+
+    float* value = nullptr;
 };
 
 struct DoubleType
@@ -240,10 +265,10 @@ int main()
     // DoubleType dt ( 2 );
     // IntType it ( 2 ) ;
 
-    std::cout << "FloatType add result=" << ft.add( 2.0f ).value << std::endl;
-    std::cout << "FloatType subtract result=" << ft.subtract( 2.0f ).value << std::endl;
-    std::cout << "FloatType multiply result=" << ft.multiply( 2.0f ).value << std::endl;
-    std::cout << "FloatType divide result=" << ft.divide( 16.0f).value << std::endl << std::endl;
+    std::cout << "FloatType add result=" << *ft.add( 2.0f ).value << std::endl;
+    std::cout << "FloatType subtract result=" << *ft.subtract( 2.0f ).value << std::endl;
+    std::cout << "FloatType multiply result=" << *ft.multiply( 2.0f ).value << std::endl;
+    std::cout << "FloatType divide result=" << *ft.divide( 16.0f).value << std::endl << std::endl;
 
     // std::cout << "DoubleType add result=" << dt.add(2.0).value << std::endl;
     // std::cout << "DoubleType subtract result=" << dt.subtract(2.0).value << std::endl;
