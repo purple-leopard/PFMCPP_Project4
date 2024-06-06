@@ -266,18 +266,43 @@ struct DoubleType
 
 struct IntType
 {
-    int add(int lhs, int rhs) { return lhs + rhs; }
-    int subtract(int lhs, int rhs) { return lhs - rhs; }
-    int multiply(int lhs, int rhs) { return lhs * rhs; }
-    int divide(int lhs, int rhs)
+    IntType(int v) : value(new int(v)) {}
+
+    ~IntType()
     {
-        if (rhs == 0)
+        delete value;
+    }
+
+    IntType& add(int x)
+    {
+        *value += x;
+        return *this;
+    }
+
+    IntType& subtract(int x)
+    {
+        *value -= x;
+        return *this;
+    }
+
+    IntType& multiply(int x)
+    {
+        *value *= x;
+        return *this;
+    }
+
+    IntType& divide(int x)
+    {
+        if (x == 0)
         {
             std::cout << "error, integer division by zero will crash the program!\nreturning lhs\n";
-            return lhs;
+            return *this;
         }
-        return lhs / rhs;
+        *value /= x;
+        return *this;
     }
+
+    int* value = nullptr;
 };
 
 int main()
@@ -288,7 +313,7 @@ int main()
     //assign heap primitives
     FloatType ft ( 2.0f );
     DoubleType dt ( 2 );
-    // IntType it ( 2 ) ;
+    IntType it ( 2 ) ;
 
     std::cout << "FloatType add result=" << *ft.add( 2.0f ).value << std::endl;
     std::cout << "FloatType subtract result=" << *ft.subtract( 2.0f ).value << std::endl;
@@ -300,11 +325,11 @@ int main()
     std::cout << "DoubleType multiply result=" << *dt.multiply(2.0).value << std::endl;
     std::cout << "DoubleType divide result=" << *dt.divide(5.0).value << std::endl << std::endl;
 
-    // std::cout << "IntType add result=" << it.add(2).value << std::endl;
-    // std::cout << "IntType subtract result=" << it.subtract(2).value << std::endl;
-    // std::cout << "IntType multiply result=" << it.multiply(2).value << std::endl;
-    // std::cout << "IntType divide result=" << it.divide(3).value << std::endl << std::endl;
-    // std::cout << "Chain calculation = " << (it.multiply(1000).divide(2).subtract(10).add(100)).value << std::endl;
+    std::cout << "IntType add result=" << *it.add(2).value << std::endl;
+    std::cout << "IntType subtract result=" << *it.subtract(2).value << std::endl;
+    std::cout << "IntType multiply result=" << *it.multiply(2).value << std::endl;
+    std::cout << "IntType divide result=" << *it.divide(3).value << std::endl << std::endl;
+    std::cout << "Chain calculation = " << *(it.multiply(1000).divide(2).subtract(10).add(100)).value << std::endl;
 
     //     // FloatType object instanciation and method tests
     // // --------
