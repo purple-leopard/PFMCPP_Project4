@@ -23,7 +23,7 @@ struct HeapA
         delete aPtr;
     }
     A* aPtr = nullptr;
-}
+};
 
 
 
