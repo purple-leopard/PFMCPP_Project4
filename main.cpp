@@ -183,6 +183,7 @@ good to go!
  */
 
 #include <iostream>
+
 struct DoubleType;
 struct IntType;
 
@@ -223,33 +224,21 @@ struct DoubleType
         delete value;
     }
 
-    DoubleType& add(double x)
-    {
-        *value += x;
-        return *this;
-    }
-    
-    DoubleType& subtract(double x)
-    {
-        *value -= x;
-        return *this;
-    }
+    DoubleType& add(double x);
+    DoubleType& add(const FloatType& x);
+    DoubleType& add(const IntType& x);
 
-    DoubleType& multiply(double x)
-    {
-        *value *= x;
-        return *this;
-    }
+    DoubleType& subtract(double x);
+    DoubleType& subtract(const FloatType& x);
+    DoubleType& subtract(const IntType& x);
 
-    DoubleType& divide(double x)
-    {
-        if (x == 0.0)
-        {
-            std::cout << "\nwarning, floating point division by zero returns 'inf' !\n";
-        } 
-        *value /= x;
-        return *this;
-    }
+    DoubleType& multiply(double x);
+    DoubleType& multiply(const FloatType& x);
+    DoubleType& multiply(const IntType& x);
+
+    DoubleType& divide(double x);
+    DoubleType& divide(const FloatType& x);
+    DoubleType& divide(const IntType& x);
 
     double* value = nullptr;
 };
@@ -359,6 +348,74 @@ FloatType& FloatType::divide(const DoubleType& x)
 }
 
 FloatType& FloatType::divide(const IntType& x)
+{
+    return divide(*x.value);
+}
+
+DoubleType& DoubleType::add(double x)
+{
+    *value += x;
+    return *this;
+}
+
+DoubleType& DoubleType::add(const FloatType& x)
+{
+    return add(*x.value);
+}
+
+DoubleType& DoubleType::add(const IntType& x)
+{
+    return add(*x.value);
+}
+
+DoubleType& DoubleType::subtract(double x)
+{
+    *value -= x;
+    return *this;
+}
+
+DoubleType& DoubleType::subtract(const FloatType& x)
+{
+    return subtract(*x.value);
+}
+
+DoubleType& DoubleType::subtract(const IntType& x)
+{
+    return subtract(*x.value);
+}
+
+DoubleType& DoubleType::multiply(double x)
+{
+    *value *= x;
+    return *this;
+}
+
+DoubleType& DoubleType::multiply(const FloatType& x)
+{
+    return multiply(*x.value);
+}
+
+DoubleType& DoubleType::multiply(const IntType& x)
+{
+    return multiply(*x.value);
+}
+
+DoubleType& DoubleType::divide(double x)
+{
+    if (x == 0.0)
+    {
+        std::cout << "\nwarning, floating point division by zero returns 'inf' !\n";
+    } 
+    *value /= x;
+    return *this;
+}
+
+DoubleType& DoubleType::divide(const FloatType& x)
+{
+    return divide(*x.value);
+}
+
+DoubleType& DoubleType::divide(const IntType& x)
 {
     return divide(*x.value);
 }
