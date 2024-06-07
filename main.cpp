@@ -200,18 +200,22 @@ struct IntType
     IntType& add(int x);
     IntType& add(const FloatType& x);
     IntType& add(const DoubleType& x);
+    IntType& add(const IntType& x);
 
     IntType& subtract(int x);
     IntType& subtract(const FloatType& x);
     IntType& subtract(const DoubleType& x);
+    IntType& subtract(const IntType& x);
 
     IntType& multiply(int x);
     IntType& multiply(const FloatType& x);
     IntType& multiply(const DoubleType& x);
+    IntType& multiply(const IntType& x);
 
     IntType& divide(int x);
     IntType& divide(const FloatType& x);
     IntType& divide(const DoubleType& x);
+    IntType& divide(const IntType& x);
 
     int* value = nullptr;
 };
@@ -408,6 +412,11 @@ IntType& IntType::add(const DoubleType& x)
     return add(*x.value);
 }
 
+IntType& IntType::add(const IntType& x)
+{
+    return add(*x.value);
+}
+
 IntType& IntType::subtract(int x)
 {
     *value -= x;
@@ -424,6 +433,11 @@ IntType& IntType::subtract(const DoubleType& x)
     return subtract(*x.value);
 }
 
+IntType& IntType::subtract(const IntType& x)
+{
+    return subtract(*x.value);
+}
+
 IntType& IntType::multiply(int x)
 {
     *value *= x;
@@ -436,6 +450,11 @@ IntType& IntType::multiply(const FloatType& x)
 }
 
 IntType& IntType::multiply(const DoubleType& x)
+{
+    return multiply(*x.value);
+}
+
+IntType& IntType::multiply(const IntType& x)
 {
     return multiply(*x.value);
 }
@@ -457,6 +476,11 @@ IntType& IntType::divide(const FloatType& x)
 }
 
 IntType& IntType::divide(const DoubleType& x)
+{
+    return divide(*x.value);
+}
+
+IntType& IntType::divide(const IntType& x)
 {
     return divide(*x.value);
 }
