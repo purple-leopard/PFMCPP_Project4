@@ -502,7 +502,7 @@ int main()
     std::cout << "IntType divide result=" << *it.divide(3).value << std::endl << std::endl;
     std::cout << "Chain calculation = " << *(it.multiply(1000).divide(2).subtract(10).add(100)).value << std::endl;
 
-        // FloatType object instanciation and method tests
+    // FloatType object instanciation and method tests
     // --------
     std::cout << "New value of ft = (ft + 3.0f) * 1.5f / 5.0f = " << *ft.add( 3.0f ).multiply(1.5f).divide(5.0f).value << std::endl;
        
@@ -512,22 +512,22 @@ int main()
     // --------
     std::cout << "Initial value of dt: " << *dt.value << std::endl;
     std::cout << "Initial value of it: " << *it.value << std::endl;
-    // --------
-    // std::cout << "Use of function concatenation (mixed type arguments) " << std::endl;
-    // std::cout << "New value of dt = (dt * it) / 5.0f + ft = " << (dt.multiply(it).divide(5.0f).add(ft).value) << std::endl;
+    --------
+    std::cout << "Use of function concatenation (mixed type arguments) " << std::endl;
+    std::cout << "New value of dt = (dt * it) / 5.0f + ft = " << (dt.multiply(it).divide(5.0f).add(ft).value) << std::endl;
 
-    // std::cout << "---------------------\n" << std::endl; 
+    std::cout << "---------------------\n" << std::endl; 
     
-    // // Intercept division by 0
-    // // --------
-    // std::cout << "Intercept division by 0 " << std::endl;
-    // std::cout << "New value of it = it / 0 = " << it.divide(0).value << std::endl;
-    // std::cout << "New value of ft = ft / 0 = " << ft.divide(0).value << std::endl;
-    // std::cout << "New value of dt = dt / 0 = " << dt.divide(0).value << std::endl;
+    // Intercept division by 0
+    // --------
+    std::cout << "Intercept division by 0 " << std::endl;
+    std::cout << "New value of it = it / 0 = " << it.divide(0).value << std::endl;
+    std::cout << "New value of ft = ft / 0 = " << ft.divide(0).value << std::endl;
+    std::cout << "New value of dt = dt / 0 = " << dt.divide(0).value << std::endl;
 
-    // std::cout << "---------------------\n" << std::endl; 
+    std::cout << "---------------------\n" << std::endl; 
 
-    // std::cout << "good to go!\n";
+    std::cout << "good to go!\n";
 
     return 0;
 }
