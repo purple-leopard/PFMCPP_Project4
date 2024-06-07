@@ -120,6 +120,7 @@ good to go!
 
 #include <iostream>
 
+struct FloatType;
 struct DoubleType;
 struct IntType;
 
@@ -133,18 +134,22 @@ struct FloatType
     }
 
     FloatType& add(float x);
+    FloatType& add(const FloatType& x);
     FloatType& add(const DoubleType& x);
     FloatType& add(const IntType& x);
 
     FloatType& subtract(float x);
+    FloatType& subtract(const FloatType& x);
     FloatType& subtract(const DoubleType& x);
     FloatType& subtract(const IntType& x);
 
     FloatType& multiply(float x);
+    FloatType& multiply(const FloatType& x);
     FloatType& multiply(const DoubleType& x);
     FloatType& multiply(const IntType& x);
 
     FloatType& divide(float x);
+    FloatType& divide(const FloatType& x);
     FloatType& divide(const DoubleType& x);
     FloatType& divide(const IntType& x);
 
@@ -213,6 +218,11 @@ FloatType& FloatType::add(float x)
     return *this;
 }
 
+FloatType& FloatType::add(const FloatType& x)
+{
+    return add(*x.value);
+}
+
 FloatType& FloatType::add(const DoubleType& x)
 {
     return add(*x.value);
@@ -229,6 +239,11 @@ FloatType& FloatType::subtract(float x)
     return *this;
 }
 
+FloatType& FloatType::subtract(const FloatType& x)
+{
+    return subtract(*x.value);
+}
+
 FloatType& FloatType::subtract(const DoubleType& x)
 {
     return subtract(*x.value);
@@ -243,6 +258,11 @@ FloatType& FloatType::multiply(float x)
 {
     *value *= x;
     return *this;
+}
+
+FloatType& FloatType::multiply(const FloatType& x)
+{
+    return multiply(*x.value);
 }
 
 FloatType& FloatType::multiply(const DoubleType& x)
@@ -263,6 +283,11 @@ FloatType& FloatType::divide(float x)
     }
     *value /= x;
     return *this;
+}
+
+FloatType& FloatType::divide(const FloatType& x)
+{
+    return divide(*x.value);
 }
 
 FloatType& FloatType::divide(const DoubleType& x)
