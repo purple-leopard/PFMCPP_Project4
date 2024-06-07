@@ -252,34 +252,21 @@ struct IntType
         delete value;
     }
 
-    IntType& add(int x)
-    {
-        *value += x;
-        return *this;
-    }
+    IntType& add(int x);
+    IntType& add(const FloatType& x);
+    IntType& add(const DoubleType& x);
 
-    IntType& subtract(int x)
-    {
-        *value -= x;
-        return *this;
-    }
+    IntType& subtract(int x);
+    IntType& subtract(const FloatType& x);
+    IntType& subtract(const DoubleType& x);
 
-    IntType& multiply(int x)
-    {
-        *value *= x;
-        return *this;
-    }
+    IntType& multiply(int x);
+    IntType& multiply(const FloatType& x);
+    IntType& multiply(const DoubleType& x);
 
-    IntType& divide(int x)
-    {
-        if (x == 0)
-        {
-            std::cout << "error, integer division by zero will crash the program!\nreturning lhs\n";
-            return *this;
-        }
-        *value /= x;
-        return *this;
-    }
+    IntType& divide(int x);
+    IntType& divide(const FloatType& x);
+    IntType& divide(const DoubleType& x);
 
     int* value = nullptr;
 };
@@ -416,6 +403,75 @@ DoubleType& DoubleType::divide(const FloatType& x)
 }
 
 DoubleType& DoubleType::divide(const IntType& x)
+{
+    return divide(*x.value);
+}
+
+IntType& IntType::add(int x)
+{
+    *value += x;
+    return *this;
+}
+
+IntType& IntType::add(const FloatType& x)
+{
+    return add(*x.value);
+}
+
+IntType& IntType::add(const DoubleType& x)
+{
+    return add(*x.value);
+}
+
+IntType& IntType::subtract(int x)
+{
+    *value -= x;
+    return *this;
+}
+
+IntType& IntType::subtract(const FloatType& x)
+{
+    return subtract(*x.value);
+}
+
+IntType& IntType::subtract(const DoubleType& x)
+{
+    return subtract(*x.value);
+}
+
+IntType& IntType::multiply(int x)
+{
+    *value *= x;
+    return *this;
+}
+
+IntType& IntType::multiply(const FloatType& x)
+{
+    return multiply(*x.value);
+}
+
+IntType& IntType::multiply(const DoubleType& x)
+{
+    return multiply(*x.value);
+}
+
+IntType& IntType::divide(int x)
+{
+    if (x == 0)
+    {
+        std::cout << "error, integer division by zero will crash the program!\nreturning lhs\n";
+        return *this;
+    }
+    *value /= x;
+    return *this;
+}
+
+IntType& IntType::divide(const FloatType& x)
+{
+    return divide(*x.value);
+}
+
+IntType& IntType::divide(const DoubleType& x)
 {
     return divide(*x.value);
 }
